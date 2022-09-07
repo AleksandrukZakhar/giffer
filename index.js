@@ -9,13 +9,17 @@ input.addEventListener("input", () => {
 
 const fetchGif = () => {
     const url = `https://api.giphy.com/v1/gifs/translate?api_key=key&s=${input.value}`;
+    const loadingImg = "https://bit.ly/3CZXt32";
+
+    img.classList.add("show");
+    img.src = loadingImg;
+    img.alt = "Loading";
 
     fetch(url, {
         mode: "cors",
     })
         .then((res) => res.json())
         .then((json) => {
-            img.classList.add("show");
             img.src = json.data.images.original.url;
             img.alt = json.data.id;
             another.classList.add("show");
