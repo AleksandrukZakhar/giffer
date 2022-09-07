@@ -11,6 +11,8 @@ const fetchGif = () => {
     const url = `https://api.giphy.com/v1/gifs/translate?api_key=key&s=${input.value}`;
     const loadingImg = "https://bit.ly/3CZXt32";
 
+    another.classList.remove("show");
+
     img.classList.add("show");
     img.src = loadingImg;
     img.alt = "Loading";
