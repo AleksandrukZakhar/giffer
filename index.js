@@ -1,3 +1,4 @@
+let url = "";
 const input = document.querySelector("input");
 const search = document.querySelector(".search");
 const img = document.querySelector("img");
@@ -7,8 +8,7 @@ input.addEventListener("input", () => {
     search.classList.add("show");
 });
 
-const fetchGif = () => {
-    const url = `https://api.giphy.com/v1/gifs/translate?api_key=key&s=${input.value}`;
+const fetchGif = (url) => {
     const loadingImg = "https://bit.ly/3CZXt32";
 
     another.classList.remove("show");
@@ -32,6 +32,10 @@ const fetchGif = () => {
 };
 
 search.addEventListener("click", () => {
-    fetchGif();
+    url = `https://api.giphy.com/v1/gifs/translate?api_key=key&s=${input.value}`;
+    input.value = "";
+    search.classList.remove("show");
+
+    fetchGif(url);
 });
-another.addEventListener("click", fetchGif);
+another.addEventListener("click", () => fetchGif(url));
