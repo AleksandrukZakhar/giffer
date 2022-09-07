@@ -8,7 +8,7 @@ input.addEventListener("input", () => {
     search.classList.add("show");
 });
 
-const fetchGif = (url) => {
+const fetchGif = async (url) => {
     const loadingImg = "https://bit.ly/3CZXt32";
 
     another.classList.remove("show");
@@ -17,18 +17,18 @@ const fetchGif = (url) => {
     img.src = loadingImg;
     img.alt = "Loading";
 
-    fetch(url, {
-        mode: "cors",
-    })
-        .then((res) => res.json())
-        .then((json) => {
-            img.src = json.data.images.original.url;
-            img.alt = json.data.id;
-            another.classList.add("show");
-        })
-        .catch((err) => {
-            throw new Error(err);
+    try {
+        const response = await fetch(url, {
+            mode: "cors",
         });
+        const res = await response.json();
+
+        img.src = res.data.images.original.url;
+        img.alt = res.data.id;
+        another.classList.add("show");
+    } catch (err) {
+        throw new Error(err);
+    }
 };
 
 search.addEventListener("click", () => {
@@ -38,4 +38,5 @@ search.addEventListener("click", () => {
 
     fetchGif(url);
 });
+
 another.addEventListener("click", () => fetchGif(url));
