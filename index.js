@@ -32,7 +32,7 @@ const fetchGif = async (url) => {
 };
 
 search.addEventListener("click", () => {
-    url = `https://api.giphy.com/v1/gifs/translate?api_key=key&s=${input.value}`;
+    url = `https://api.giphy.com/v1/gifs/translate?api_key=7mpjdDaOie3ZY0DbJUMDrPwfMahd2SDA&s=${input.value}`;
     input.value = "";
     search.classList.remove("show");
 
